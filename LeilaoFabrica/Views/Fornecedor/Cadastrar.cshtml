@@ -1,0 +1,72 @@
+﻿@model LeilaoFabrica.ViewModels.FornecedorViewModel
+@{
+    ViewBag.Title = "Cadastrar";
+}
+
+@HelperLayout.Titulo("Cadastro de Fornecedor Pessoa Física")
+
+@HelperLayout.Mensagem(Model.Mensagem, Model.TipoMensagem)
+
+@Html.ValidationSummary()
+
+<div class="row">
+    
+        @using (Html.BeginForm())
+        {
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(f => f.Nome)
+                    @Html.TextBoxFor(f => f.Nome, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(f=>f.Senha)
+                    @Html.TextBoxFor(f=>f.Senha, new { @class="form-control"})
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(f => f.Email)
+                    @Html.TextBoxFor(f => f.Email, new { @class = "form-control" })
+                </div>     
+                
+                <div class="form-group">
+                    @Html.LabelFor(f=>f.Cpf)
+                    @Html.TextBoxFor(f=>f.Cpf, new { @class="form-control"})
+                </div>          
+
+                <div class="form-group">
+                    @Html.LabelFor(f=>f.Tel)
+                    @Html.TextBoxFor(f=>f.Tel, new { @class="form-control"})
+                </div>                
+                <div class="form-group">
+                    <input type="submit" class="btn btn-success" value="Salvar" />
+                    <input type="reset" class="btn btn-danger" value="Limpar" />
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(f => f.Cep)
+                    @Html.TextBoxFor(f => f.Cep, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("Rua")
+                    @Html.TextBox("Rua", null, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("Cidade")
+                    @Html.TextBox("Cidade", null, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("Estado")
+                    @Html.TextBox("Estado", null, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(f=>f.Complemento)
+                    @Html.TextBoxFor(f=>f.Complemento, new { @class = "form-control" })
+                </div>
+            </div>
+        }
+            
+</div>
+
