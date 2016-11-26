@@ -23,28 +23,56 @@ namespace LeilaoFabrica.UnitsOfWork
 
         public IGenericRepository<Fornecedor> FornecedorRepository
         {
-            get { return _fornecedorRepository; }
+            get
+            {
+                if(_fornecedorRepository == null)
+                {
+                    _fornecedorRepository = new GenericRepository<Fornecedor>(_context);
+                }
+                return _fornecedorRepository;
+            }
             set { _fornecedorRepository = value; }
         }
 
 
         public IGenericRepository<Leilao> LeilaoRepository
         {
-            get { return _leilaoRepository; }
+            get
+            {
+                if(_leilaoRepository == null)
+                {
+                    _leilaoRepository = new GenericRepository<Leilao>(_context);
+                }
+                return _leilaoRepository;
+            }
             set { _leilaoRepository = value; }
         }
 
 
         public IGenericRepository<Produto> ProdutoRepository
         {
-            get { return _produtoRepository; }
+            get
+            {
+                if(_produtoRepository == null)
+                {
+                    _produtoRepository = new GenericRepository<Produto>(_context);
+                }
+                return _produtoRepository;
+            }
             set { _produtoRepository = value; }
         }
 
 
         public IGenericRepository<Usuario> UsuarioRepository
         {
-            get { return _usuarioRepository; }
+            get
+            {
+                if(_usuarioRepository == null)
+                {
+                    _usuarioRepository = new GenericRepository<Usuario>(_context);
+                }
+                return _usuarioRepository;             
+            }
             set { _usuarioRepository = value; }
         }
 

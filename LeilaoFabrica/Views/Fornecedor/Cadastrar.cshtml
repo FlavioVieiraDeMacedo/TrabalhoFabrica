@@ -18,9 +18,19 @@
                 </div>
 
                 <div class="form-group">
+                    @Html.LabelFor(f=>f.Senha)
+                    @Html.TextBoxFor(f=>f.Senha, new { @class="form-control"})
+                </div>
+
+                <div class="form-group">
                     @Html.LabelFor(f => f.Email)
                     @Html.TextBoxFor(f => f.Email, new { @class = "form-control" })
-                </div>               
+                </div>     
+                
+                <div class="form-group">
+                    @Html.LabelFor(f=>f.Cpf)
+                    @Html.TextBoxFor(f=>f.Cpf, new { @class="form-control"})
+                </div>          
 
                 <div class="form-group">
                     @Html.LabelFor(f=>f.Tel)

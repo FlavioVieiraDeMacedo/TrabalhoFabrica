@@ -42,8 +42,8 @@ namespace LeilaoFabrica.Controllers
                 var fornecedor = new Fornecedor()
                 {
                     Nome = fViewModel.Nome,
-                    Email = fViewModel.Email,
                     Senha = fViewModel.Senha,
+                    Email = fViewModel.Email,                    
                     Cpf = fViewModel.Cpf,
                     Tel = fViewModel.Tel,
                     Cep = fViewModel.Cep,
