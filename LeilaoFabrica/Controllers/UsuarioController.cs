@@ -1,4 +1,5 @@
 ﻿using LeilaoFabrica.Models;
+using LeilaoFabrica.UnitsOfWork;
 using LeilaoFabrica.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -9,29 +10,24 @@ using System.Web.Mvc;
 namespace LeilaoFabrica.Controllers
 {
     public class UsuarioController : Controller
+
     {
+        private UnitOfWork _unit = new UnitOfWork();
         // GET: Usuario
         [HttpGet]
         public ActionResult Cadastrar(string msg)
+
         {
             var viewModel = new UsuarioViewModel()
             {
                 Mensagem = msg
             };
-            return View();
+            return View(viewModel);
         }
         [HttpPost]
         public ActionResult Cadastrar(UsuarioViewModel usuarioViewModel)
         {
-            var usuario = ConverteEmUsuario(usuarioViewModel);
-                _unit.UsuarioRepository.Cadastrar(usuario);
-                _unit.Salvar();
-                return RedirectToAction("Cadastro", new { msg = "Cadastrado Com Sucesso!" });
-            
-    }
-        private Usuario ConverteEmUsuario(UsuarioViewModel usuarioViewModel)
-        {
-            Usuario usuario = new Usuario()
+            var usuario = new Usuario()
             {
                 Id = usuarioViewModel.Id,
                 Nome = usuarioViewModel.Nome,
@@ -42,6 +38,12 @@ namespace LeilaoFabrica.Controllers
                 Complemento = usuarioViewModel.Complemento,
                 Tel = usuarioViewModel.Tel
             };
-            return usuario;
+            _unit.UsuarioRepository.Cadastrar(usuario);
+
+            _unit.Save();
+            return RedirectToAction("Cadastrar", new { msg = "Cadastrado Com Sucesso!" });
+
         }
+        
+    }
 }

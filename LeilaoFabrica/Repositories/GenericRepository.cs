@@ -38,7 +38,7 @@ namespace LeilaoFabrica.Repositories
 
         public void Cadastrar(T entidade)
         {
-            _context.Entry(entidade).State = EntityState.Added;
+            _dbset.Add(entidade);
         }
 
         public ICollection<T> Listar()
