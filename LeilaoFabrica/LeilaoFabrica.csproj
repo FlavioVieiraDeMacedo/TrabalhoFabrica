@@ -127,57 +127,76 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Models\Banco.Context.tt">
+    <Content Include="Models\BancoLeilao.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Banco.edmx</DependentUpon>
-      <LastGenOutput>Banco.Context.cs</LastGenOutput>
+      <DependentUpon>BancoLeilao.edmx</DependentUpon>
+      <LastGenOutput>BancoLeilao.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Banco.tt">
+    <Content Include="Models\BancoLeilao.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Banco.edmx</DependentUpon>
-      <LastGenOutput>Banco.cs</LastGenOutput>
+      <DependentUpon>BancoLeilao.edmx</DependentUpon>
+      <LastGenOutput>BancoLeilao.cs</LastGenOutput>
     </Content>
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
+    <Content Include="scripts\bootstrap.js" />
+    <Content Include="scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\BancoLeilao.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BancoLeilao.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\BancoLeilao.edmx.diagram">
+      <DependentUpon>BancoLeilao.edmx</DependentUpon>
+    </Content>
+    <None Include="scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="scripts\jquery-1.10.2.js" />
+    <Content Include="scripts\jquery-1.10.2.min.js" />
+    <Content Include="scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Banco.Context.cs">
+    <Compile Include="Models\BancoLeilao.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Banco.Context.tt</DependentUpon>
+      <DependentUpon>BancoLeilao.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Banco.cs">
+    <Compile Include="Models\BancoLeilao.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Banco.tt</DependentUpon>
+      <DependentUpon>BancoLeilao.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Banco.Designer.cs">
+    <Compile Include="Models\BancoLeilao.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Banco.edmx</DependentUpon>
+      <DependentUpon>BancoLeilao.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Fornecedor.cs">
-      <DependentUpon>Banco.tt</DependentUpon>
+      <DependentUpon>BancoLeilao.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Leilao.cs">
-      <DependentUpon>Banco.tt</DependentUpon>
+      <DependentUpon>BancoLeilao.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Produto.cs">
-      <DependentUpon>Banco.tt</DependentUpon>
+      <DependentUpon>BancoLeilao.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProdutoFornecedor.cs">
-      <DependentUpon>Banco.tt</DependentUpon>
+      <DependentUpon>BancoLeilao.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Usuario.cs">
-      <DependentUpon>Banco.tt</DependentUpon>
+      <DependentUpon>BancoLeilao.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\UsuarioViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -185,13 +204,13 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="Models\Banco.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Banco.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Banco.edmx.diagram">
-      <DependentUpon>Banco.edmx</DependentUpon>
-    </Content>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Usuario\Cadastro.cshtml" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="scripts\jquery-1.10.2.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -201,7 +220,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

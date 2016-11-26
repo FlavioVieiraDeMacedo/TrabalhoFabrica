@@ -13,10 +13,10 @@ namespace LeilaoFabrica.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Entities : DbContext
+    public partial class LeilaoContext : DbContext
     {
-        public Entities()
-            : base("name=Entities")
+        public LeilaoContext()
+            : base("name=LeilaoContext")
         {
         }
     
