@@ -1,0 +1,27 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace LeilaoFabrica.ViewModels
+{
+    public class FornecedorViewModel
+    {
+
+        #region FIELDS
+
+        public int Id { get; set; }
+        public string Nome { get; set; }
+        public string Email { get; set; }
+        public string Senha { get; set; }
+        public string Cpf { get; set; }
+
+        //TODO:trocar nome no banco de Tel para Telefone
+        public string Tel { get; set; }
+        public int Cep { get; set; }
+        public string Complement { get; set; }
+
+        #endregion
+
+    }
+}
