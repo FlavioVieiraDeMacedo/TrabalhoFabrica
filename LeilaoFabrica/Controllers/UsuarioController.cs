@@ -7,9 +7,8 @@ using System.Web.Mvc;
 namespace LeilaoFabrica.Controllers
 {
     public class UsuarioController : Controller
-    {
-        // GET: Usuario
-        [HttpPost]
+    {        
+        [HttpGet]
         public ActionResult Cadastro()
         {
             return View();
