@@ -1,4 +1,7 @@
-﻿using System;
+﻿using LeilaoFabrica.Models;
+using LeilaoFabrica.UnitsOfWork;
+using LeilaoFabrica.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,12 +11,52 @@ namespace LeilaoFabrica.Controllers
 {
     public class ProdutoController : Controller
     {
+        #region FIELDS
+
+        private UnitOfWork _unit = new UnitOfWork();
+
+        #endregion
+
         #region GETS
 
         [HttpGet]
-        public ActionResult Cadastrar()
+        public ActionResult Cadastrar(string mensagem, string tipoMensagem)
         {
-            return View();
+            var viewModel = new ProdutoViewModel()
+            {
+                Mensagem = mensagem,
+                TipoMensagem = tipoMensagem
+            };
+            return View(viewModel);
+        }
+
+        #endregion
+
+
+        #region POSTS
+        [HttpPost]
+        public ActionResult Cadastrar(ProdutoViewModel pViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var produto = new Produto()
+                {
+                    Nome = pViewModel.Nome,
+                    Descricao = pViewModel.Descricao,
+                    PrecoBase = pViewModel.PrecoBase,
+                    //TODO: verificar Foto
+                    Foto = new byte[1]
+                };
+
+                _unit.ProdutoRepository.Cadastrar(produto);
+                _unit.Save();
+
+                return RedirectToAction("Cadastrar", 
+                    new { mensagem = "Cadastro Realizado!", tipoMensagem = "alert alert-success" });
+            }else
+            {
+                return View(pViewModel);
+            }           
         }
 
         #endregion

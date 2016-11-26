@@ -1,7 +1,30 @@
-﻿
+﻿@model LeilaoFabrica.ViewModels.ProdutoViewModel
 @{
     ViewBag.Title = "Cadastrar";
 }
 
-<h2>Cadastrar</h2>
+@HelperLayout.Titulo("Cadastro de Produto")
 
+<div class="row">
+    <div class="col-md-12">
+        @using (Html.BeginForm())
+        {
+            <div class="form-group">
+                @Html.LabelFor(p=>p.Nome)
+                @Html.TextBoxFor(p=>p.Nome, new {@class="form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(p=>p.Descricao)
+                @Html.TextAreaFor(p=>p.Descricao, new { @class="form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(p=>p.PrecoBase)
+                @Html.TextBoxFor(p=>p.PrecoBase, new { @class="form-control" })
+            </div>
+            <div class="form-group">
+               <input type="submit" class="btn btn-success" value="Salvar" />
+               <input type="reset" class="btn btn-danger" value="Limpar"/>
+             </div>
+        }
+    </div>
+</div>

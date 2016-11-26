@@ -8,6 +8,10 @@ namespace LeilaoFabrica.ViewModels
 {
     public class ProdutoViewModel
     {
+
+        public string Mensagem { get; set; }
+        public string TipoMensagem { get; set; }
+
         #region FIELDS
 
         public int Id { get; set; }
