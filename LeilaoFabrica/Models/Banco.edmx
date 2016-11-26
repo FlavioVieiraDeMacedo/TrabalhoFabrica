@@ -1,0 +1,359 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Fabrica.Leilao.BancoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Fornecedor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Senha" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cpf" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tel" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cep" Type="int" Nullable="false" />
+          <Property Name="Complemento" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Leilao">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id_Usuario" Type="int" Nullable="false" />
+          <Property Name="Id_ProdutoFornecedor" Type="int" Nullable="false" />
+          <Property Name="PrecoDoFornecedor" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Produto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Descricao" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PrecoBase" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Foto" Type="image" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProdutoFornecedor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Quantidade" Type="int" Nullable="false" />
+          <Property Name="Id_Produto" Type="int" Nullable="false" />
+          <Property Name="Id_Fornecedor" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Senha" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cpf" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tel" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cep" Type="int" Nullable="false" />
+          <Property Name="Complemento" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Leilao_Id_ProdutoFornecedor">
+          <End Role="ProdutoFornecedor" Type="Self.ProdutoFornecedor" Multiplicity="1" />
+          <End Role="Leilao" Type="Self.Leilao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProdutoFornecedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Leilao">
+              <PropertyRef Name="Id_ProdutoFornecedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Leilao_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Leilao" Type="Self.Leilao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Leilao">
+              <PropertyRef Name="Id_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProdutoFornecedor_Fornecedor">
+          <End Role="Fornecedor" Type="Self.Fornecedor" Multiplicity="1" />
+          <End Role="ProdutoFornecedor" Type="Self.ProdutoFornecedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fornecedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProdutoFornecedor">
+              <PropertyRef Name="Id_Fornecedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProdutoFornecedor_Produto">
+          <End Role="Produto" Type="Self.Produto" Multiplicity="1" />
+          <End Role="ProdutoFornecedor" Type="Self.ProdutoFornecedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProdutoFornecedor">
+              <PropertyRef Name="Id_Produto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FabricaLeilaoBancoModelStoreContainer">
+          <EntitySet Name="Fornecedor" EntityType="Self.Fornecedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Leilao" EntityType="Self.Leilao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Produto" EntityType="Self.Produto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProdutoFornecedor" EntityType="Self.ProdutoFornecedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Leilao_Id_ProdutoFornecedor" Association="Self.FK_Leilao_Id_ProdutoFornecedor">
+            <End Role="ProdutoFornecedor" EntitySet="ProdutoFornecedor" />
+            <End Role="Leilao" EntitySet="Leilao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Leilao_Usuario" Association="Self.FK_Leilao_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Leilao" EntitySet="Leilao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProdutoFornecedor_Fornecedor" Association="Self.FK_ProdutoFornecedor_Fornecedor">
+            <End Role="Fornecedor" EntitySet="Fornecedor" />
+            <End Role="ProdutoFornecedor" EntitySet="ProdutoFornecedor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProdutoFornecedor_Produto" Association="Self.FK_ProdutoFornecedor_Produto">
+            <End Role="Produto" EntitySet="Produto" />
+            <End Role="ProdutoFornecedor" EntitySet="ProdutoFornecedor" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Fabrica.Leilao.BancoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Fornecedor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Senha" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cpf" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cep" Type="Int32" Nullable="false" />
+          <Property Name="Complemento" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ProdutoFornecedors" Relationship="Self.FK_ProdutoFornecedor_Fornecedor" FromRole="Fornecedor" ToRole="ProdutoFornecedor" />
+        </EntityType>
+        <EntityType Name="Leilao">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id_Usuario" Type="Int32" Nullable="false" />
+          <Property Name="Id_ProdutoFornecedor" Type="Int32" Nullable="false" />
+          <Property Name="PrecoDoFornecedor" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="ProdutoFornecedor" Relationship="Self.FK_Leilao_Id_ProdutoFornecedor" FromRole="Leilao" ToRole="ProdutoFornecedor" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Leilao_Usuario" FromRole="Leilao" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Produto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Descricao" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PrecoBase" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Foto" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="ProdutoFornecedors" Relationship="Self.FK_ProdutoFornecedor_Produto" FromRole="Produto" ToRole="ProdutoFornecedor" />
+        </EntityType>
+        <EntityType Name="ProdutoFornecedor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Quantidade" Type="Int32" Nullable="false" />
+          <Property Name="Id_Produto" Type="Int32" Nullable="false" />
+          <Property Name="Id_Fornecedor" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Fornecedor" Relationship="Self.FK_ProdutoFornecedor_Fornecedor" FromRole="ProdutoFornecedor" ToRole="Fornecedor" />
+          <NavigationProperty Name="Leilaos" Relationship="Self.FK_Leilao_Id_ProdutoFornecedor" FromRole="ProdutoFornecedor" ToRole="Leilao" />
+          <NavigationProperty Name="Produto" Relationship="Self.FK_ProdutoFornecedor_Produto" FromRole="ProdutoFornecedor" ToRole="Produto" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Senha" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cpf" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cep" Type="Int32" Nullable="false" />
+          <Property Name="Complemento" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Leilaos" Relationship="Self.FK_Leilao_Usuario" FromRole="Usuario" ToRole="Leilao" />
+        </EntityType>
+        <Association Name="FK_ProdutoFornecedor_Fornecedor">
+          <End Role="Fornecedor" Type="Self.Fornecedor" Multiplicity="1" />
+          <End Role="ProdutoFornecedor" Type="Self.ProdutoFornecedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fornecedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProdutoFornecedor">
+              <PropertyRef Name="Id_Fornecedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Leilao_Id_ProdutoFornecedor">
+          <End Role="ProdutoFornecedor" Type="Self.ProdutoFornecedor" Multiplicity="1" />
+          <End Role="Leilao" Type="Self.Leilao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProdutoFornecedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Leilao">
+              <PropertyRef Name="Id_ProdutoFornecedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Leilao_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Leilao" Type="Self.Leilao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Leilao">
+              <PropertyRef Name="Id_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProdutoFornecedor_Produto">
+          <End Role="Produto" Type="Self.Produto" Multiplicity="1" />
+          <End Role="ProdutoFornecedor" Type="Self.ProdutoFornecedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProdutoFornecedor">
+              <PropertyRef Name="Id_Produto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Fornecedors" EntityType="Self.Fornecedor" />
+          <EntitySet Name="Leilaos" EntityType="Self.Leilao" />
+          <EntitySet Name="Produtoes" EntityType="Self.Produto" />
+          <EntitySet Name="ProdutoFornecedors" EntityType="Self.ProdutoFornecedor" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
+          <AssociationSet Name="FK_ProdutoFornecedor_Fornecedor" Association="Self.FK_ProdutoFornecedor_Fornecedor">
+            <End Role="Fornecedor" EntitySet="Fornecedors" />
+            <End Role="ProdutoFornecedor" EntitySet="ProdutoFornecedors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Leilao_Id_ProdutoFornecedor" Association="Self.FK_Leilao_Id_ProdutoFornecedor">
+            <End Role="ProdutoFornecedor" EntitySet="ProdutoFornecedors" />
+            <End Role="Leilao" EntitySet="Leilaos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Leilao_Usuario" Association="Self.FK_Leilao_Usuario">
+            <End Role="Usuario" EntitySet="Usuarios" />
+            <End Role="Leilao" EntitySet="Leilaos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProdutoFornecedor_Produto" Association="Self.FK_ProdutoFornecedor_Produto">
+            <End Role="Produto" EntitySet="Produtoes" />
+            <End Role="ProdutoFornecedor" EntitySet="ProdutoFornecedors" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FabricaLeilaoBancoModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Fornecedors">
+            <EntityTypeMapping TypeName="Fabrica.Leilao.BancoModel.Fornecedor">
+              <MappingFragment StoreEntitySet="Fornecedor">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Senha" ColumnName="Senha" />
+                <ScalarProperty Name="Cpf" ColumnName="Cpf" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="Cep" ColumnName="Cep" />
+                <ScalarProperty Name="Complemento" ColumnName="Complemento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Leilaos">
+            <EntityTypeMapping TypeName="Fabrica.Leilao.BancoModel.Leilao">
+              <MappingFragment StoreEntitySet="Leilao">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Id_Usuario" ColumnName="Id_Usuario" />
+                <ScalarProperty Name="Id_ProdutoFornecedor" ColumnName="Id_ProdutoFornecedor" />
+                <ScalarProperty Name="PrecoDoFornecedor" ColumnName="PrecoDoFornecedor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Produtoes">
+            <EntityTypeMapping TypeName="Fabrica.Leilao.BancoModel.Produto">
+              <MappingFragment StoreEntitySet="Produto">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="PrecoBase" ColumnName="PrecoBase" />
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProdutoFornecedors">
+            <EntityTypeMapping TypeName="Fabrica.Leilao.BancoModel.ProdutoFornecedor">
+              <MappingFragment StoreEntitySet="ProdutoFornecedor">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Quantidade" ColumnName="Quantidade" />
+                <ScalarProperty Name="Id_Produto" ColumnName="Id_Produto" />
+                <ScalarProperty Name="Id_Fornecedor" ColumnName="Id_Fornecedor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="Fabrica.Leilao.BancoModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Senha" ColumnName="Senha" />
+                <ScalarProperty Name="Cpf" ColumnName="Cpf" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="Cep" ColumnName="Cep" />
+                <ScalarProperty Name="Complemento" ColumnName="Complemento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,11 @@
+﻿CREATE TABLE [dbo].[Fornecedor]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [Nome] NVARCHAR(250) NOT NULL, 
+    [Email] NVARCHAR(250) NOT NULL,
+	[Senha] NVARCHAR(50) NOT NULL, 
+    [Cpf] NVARCHAR(50) NOT NULL, 
+    [Tel] NVARCHAR(50) NOT NULL, 
+    [Cep] INT NOT NULL, 
+    [Complemento] NVARCHAR(MAX) NOT NULL
+)

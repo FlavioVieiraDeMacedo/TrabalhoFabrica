@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4961712ca719400b9eb5bb16a15ffcaa" Name="Diagram1">
+        <EntityTypeShape EntityType="Fabrica.Leilao.BancoModel.Fornecedor" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fabrica.Leilao.BancoModel.Leilao" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fabrica.Leilao.BancoModel.Produto" Width="1.5" PointX="2.875" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fabrica.Leilao.BancoModel.ProdutoFornecedor" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Fabrica.Leilao.BancoModel.Usuario" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
+        <AssociationConnector Association="Fabrica.Leilao.BancoModel.FK_ProdutoFornecedor_Fornecedor" ManuallyRouted="false" />
+        <AssociationConnector Association="Fabrica.Leilao.BancoModel.FK_Leilao_Id_ProdutoFornecedor" ManuallyRouted="false" />
+        <AssociationConnector Association="Fabrica.Leilao.BancoModel.FK_Leilao_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="Fabrica.Leilao.BancoModel.FK_ProdutoFornecedor_Produto" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
