@@ -1,14 +1,17 @@
-﻿using System;
+﻿using LeilaoFabrica.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace LeilaoFabrica.ViewModels
 {
     public class ProdutoViewModel
     {
-
+        public SelectList Fornecedores { get; set; }        
+        public int[] FornecedoresId { get; set; }
         public string Mensagem { get; set; }
         public string TipoMensagem { get; set; }
 

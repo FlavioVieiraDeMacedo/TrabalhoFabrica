@@ -25,7 +25,8 @@ namespace LeilaoFabrica.Controllers
             var viewModel = new ProdutoViewModel()
             {
                 Mensagem = mensagem,
-                TipoMensagem = tipoMensagem
+                TipoMensagem = tipoMensagem,
+                Fornecedores = ListarFornecedores()
             };
             return View(viewModel);
         }
@@ -45,8 +46,15 @@ namespace LeilaoFabrica.Controllers
                     Descricao = pViewModel.Descricao,
                     PrecoBase = pViewModel.PrecoBase,
                     //TODO: verificar Foto
-                    Foto = new byte[1]
+                    Foto = new byte[1]                    
+                    //TODO: trocar esse nome para Fornecedores                                  
                 };
+
+                foreach(var id in pViewModel.FornecedoresId)
+                {
+                    Fornecedor f = _unit.FornecedorRepository.BuscarPorId(id);
+                    produto.ProdutoFornecedors.Add(f);
+                }
 
                 _unit.ProdutoRepository.Cadastrar(produto);
                 _unit.Save();
@@ -59,6 +67,13 @@ namespace LeilaoFabrica.Controllers
             }           
         }
 
+        #endregion
+
+        #region PRIVATE
+        private SelectList ListarFornecedores()
+        {
+            return new SelectList(_unit.FornecedorRepository.Listar(), "Id", "Nome");
+        }
         #endregion
     }
 }
