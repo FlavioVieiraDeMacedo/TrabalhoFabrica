@@ -25,11 +25,6 @@
                 @Html.LabelFor(p=>p.PrecoBase)
                 @Html.TextBoxFor(p=>p.PrecoBase, new { @class="form-control" })
             </div>
-            <div class="form-group">
-                @Html.LabelFor(p=>p.Fornecedores)
-                @Html.DropDownListFor(p => p.Fornecedores,
-              Model.Fornecedores, "Selecione", new { @class = "form-control" })
-            </div>
 
             <div class="form-group">
                <input type="submit" class="btn btn-success" value="Salvar" />

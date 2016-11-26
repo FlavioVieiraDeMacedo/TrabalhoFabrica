@@ -10,8 +10,8 @@ namespace LeilaoFabrica.ViewModels
 {
     public class ProdutoViewModel
     {
-        public SelectList Fornecedores { get; set; }        
-        public int[] FornecedoresId { get; set; }
+        //public SelectList Fornecedores { get; set; }        
+        //public int[] FornecedoresId { get; set; }
         public string Mensagem { get; set; }
         public string TipoMensagem { get; set; }
 
