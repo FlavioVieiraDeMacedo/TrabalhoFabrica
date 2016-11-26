@@ -8,6 +8,9 @@ namespace LeilaoFabrica.ViewModels
     public class FornecedorViewModel
     {
 
+        public string Mensagem { get; set; }
+        public string TipoMensagem { get; set; }
+
         #region FIELDS
 
         public int Id { get; set; }
@@ -19,7 +22,7 @@ namespace LeilaoFabrica.ViewModels
         //TODO:trocar nome no banco de Tel para Telefone
         public string Tel { get; set; }
         public int Cep { get; set; }
-        public string Complement { get; set; }
+        public string Complemento { get; set; }
 
         #endregion
 
